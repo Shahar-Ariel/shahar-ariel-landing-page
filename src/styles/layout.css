@@ -1,0 +1,135 @@
+.page-shell {
+  color: var(--text-primary);
+}
+
+.section-inner {
+  width: var(--page-width);
+  margin: 0 auto;
+}
+
+.page-section {
+  padding: 56px 0;
+}
+
+.page-section--hero {
+  padding: 34px 0 0;
+  background:
+    linear-gradient(180deg, rgba(10, 23, 45, 0.96), rgba(7, 22, 44, 0.98)),
+    var(--bg-dark);
+}
+
+.section-heading {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.section-heading--center {
+  justify-items: center;
+  text-align: center;
+}
+
+.section-heading--right {
+  justify-items: start;
+  text-align: right;
+}
+
+.section-heading__eyebrow,
+.hero-copy__eyebrow,
+.cta-banner__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-size: 0.92rem;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.section-heading h2,
+.cta-banner h2 {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.section-heading p,
+.cta-banner p {
+  max-width: 760px;
+  color: var(--text-secondary);
+  font-size: 1.02rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+  font-weight: 700;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button--primary {
+  background: linear-gradient(180deg, #2383ff, #0f67ea);
+  color: var(--text-light);
+  box-shadow: 0 14px 30px rgba(20, 101, 235, 0.28);
+}
+
+.button--secondary {
+  border-color: rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-light);
+}
+
+.card-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.card-grid--services {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card-grid--audience {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1060px) {
+  .card-grid--services,
+  .card-grid--audience {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .page-section {
+    padding: 44px 0;
+  }
+
+  .section-heading {
+    justify-items: start;
+    text-align: right;
+  }
+
+  .section-heading h2,
+  .cta-banner h2 {
+    font-size: 1.85rem;
+  }
+
+  .card-grid--services,
+  .card-grid--audience {
+    grid-template-columns: 1fr;
+  }
+}

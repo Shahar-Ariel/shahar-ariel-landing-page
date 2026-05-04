@@ -1,0 +1,121 @@
+.contact-section {
+  padding: 24px 0 58px;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr);
+  gap: 22px;
+}
+
+.contact-panel,
+.contact-form {
+  padding: 22px;
+}
+
+.contact-panel {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(57, 101, 184, 0.12);
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-1px);
+  border-color: rgba(25, 112, 255, 0.26);
+}
+
+.contact-item__icon {
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  color: var(--accent);
+  background: rgba(25, 112, 255, 0.08);
+}
+
+.contact-item__text {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  text-align: center;
+}
+
+.contact-item__text strong {
+  font-size: 1rem;
+}
+
+.contact-item__text span {
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.contact-form {
+  display: grid;
+  gap: 16px;
+}
+
+.contact-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 15px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(57, 101, 184, 0.12);
+  background: #fbfcff;
+  color: var(--text-primary);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 2px solid rgba(25, 112, 255, 0.18);
+  border-color: rgba(25, 112, 255, 0.34);
+}
+
+.contact-form__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.contact-form__footer p {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .contact-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
