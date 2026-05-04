@@ -9,7 +9,6 @@ export function AudienceSection() {
       <SectionHeading
         eyebrow="Best Fit"
         title="למי זה מתאים"
-        description="לאתרים ותדמית זה לא מספיק. המיקוד כאן הוא בלקוחות שצריכים הובלה הנדסית ברמה גבוהה."
       />
       <div className="card-grid card-grid--audience">
         {audienceItems.map((item) => (

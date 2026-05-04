@@ -14,12 +14,6 @@ export const contactItems = [
     Icon: Mail,
   },
   {
-    title: 'WhatsApp',
-    value: 'דברו איתי ישירות',
-    href: 'https://wa.me/972527185607',
-    Icon: MessageCircle,
-  },
-  {
     title: 'LinkedIn',
     value: 'linkedin.com/in/shahar-ariel-b018b8b2',
     href: 'https://www.linkedin.com/in/shahar-ariel-b018b8b2/',

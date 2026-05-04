@@ -5,7 +5,7 @@ export function Header() {
     <header className="site-header">
       <div className="site-header__inner">
         <a className="site-brand" href="#hero">
-          <span>Shahar Ariel</span>
+          <span>שחר אריאל</span>
           <span className="site-brand__mark" />
         </a>
         <nav className="site-nav" aria-label="primary">
