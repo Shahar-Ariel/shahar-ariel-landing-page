@@ -2,17 +2,26 @@ import { ContactForm } from '../components/contact/ContactForm';
 import { ContactPanel } from '../components/contact/ContactPanel';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { useContactForm } from '../hooks/useContactForm';
+import type { ContactSubmitStatus } from '../types/contact';
 
-function getStatusText(status: 'idle' | 'invalid' | 'ready') {
+function getStatusText(status: ContactSubmitStatus, errorMessage: string) {
   if (status === 'invalid') {
     return 'יש למלא שם מלא, אימייל ותיאור קצר של הצורך.';
   }
 
-  if (status === 'ready') {
-    return 'נפתח חלון מייל עם פרטי הפנייה שמילאתם.';
+  if (status === 'submitting') {
+    return 'שולח את הפנייה לשרת...';
   }
 
-  return 'ניתן גם לפנות ישירות בטלפון, מייל או LinkedIn.';
+  if (status === 'success') {
+    return 'הפנייה נשמרה ונשלחה בהצלחה.';
+  }
+
+  if (status === 'error') {
+    return errorMessage;
+  }
+
+  return 'הפרטים נשלחים לשרת ונשמרים ישירות במערכת.';
 }
 
 export function ContactSection() {
@@ -28,9 +37,13 @@ export function ContactSection() {
         />
         <div className="contact-layout">
           <ContactPanel />
-          <ContactForm controller={controller} statusText={getStatusText(controller.status)} />
+          <ContactForm
+            controller={controller}
+            statusText={getStatusText(controller.status, controller.errorMessage)}
+          />
         </div>
       </div>
     </section>
   );
 }
+

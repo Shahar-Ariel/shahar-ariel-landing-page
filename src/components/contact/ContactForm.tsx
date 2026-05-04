@@ -13,7 +13,7 @@ type ContactFormProps = {
 };
 
 export function ContactForm({ controller, statusText }: ContactFormProps) {
-  const { formState, updateField, submitForm } = controller;
+  const { formState, status, updateField, submitForm } = controller;
 
   return (
     <form className="contact-form" onSubmit={submitForm}>
@@ -35,11 +35,16 @@ export function ContactForm({ controller, statusText }: ContactFormProps) {
         onChange={(event) => updateField('message', event.target.value)}
       />
       <div className="contact-form__footer">
-        <button type="submit" className="button button--primary">
-          שליחה
+        <button
+          type="submit"
+          className="button button--primary"
+          disabled={status === 'submitting'}
+        >
+          {status === 'submitting' ? 'שולח...' : 'שליחה'}
         </button>
         <p>{statusText}</p>
       </div>
     </form>
   );
 }
+

@@ -1,15 +1,9 @@
 import type { FormEvent } from 'react';
 import { useState } from 'react';
+import { submitContactForm } from '../services/contactService';
+import type { ContactFormState, ContactSubmitStatus } from '../types/contact';
 
-type FormState = {
-  fullName: string;
-  email: string;
-  phone: string;
-  company: string;
-  message: string;
-};
-
-const initialState: FormState = {
+const initialState: ContactFormState = {
   fullName: '',
   email: '',
   phone: '',
@@ -17,62 +11,59 @@ const initialState: FormState = {
   message: '',
 };
 
-type Status = 'idle' | 'invalid' | 'ready';
-
 export type ContactFormController = {
-  formState: FormState;
-  status: Status;
-  updateField: (field: keyof FormState, value: string) => void;
+  formState: ContactFormState;
+  status: ContactSubmitStatus;
+  errorMessage: string;
+  updateField: (field: keyof ContactFormState, value: string) => void;
   submitForm: (event: FormEvent<HTMLFormElement>) => void;
 };
 
-function createMailtoLink(state: FormState) {
-  const subject = encodeURIComponent(`פנייה חדשה מהאתר - ${state.fullName}`);
-  const body = encodeURIComponent(
-    [
-      `שם מלא: ${state.fullName}`,
-      `אימייל: ${state.email}`,
-      `טלפון: ${state.phone}`,
-      `חברה: ${state.company}`,
-      '',
-      'פרטי הפנייה:',
-      state.message,
-    ].join('\n'),
-  );
-
-  return `mailto:arielshahar8@gmail.com?subject=${subject}&body=${body}`;
-}
-
-function isValid(state: FormState) {
+function isValid(state: ContactFormState) {
   return Boolean(state.fullName && state.email && state.message);
 }
 
 export function useContactForm() {
-  const [formState, setFormState] = useState<FormState>(initialState);
-  const [status, setStatus] = useState<Status>('idle');
+  const [formState, setFormState] = useState<ContactFormState>(initialState);
+  const [status, setStatus] = useState<ContactSubmitStatus>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const updateField = (field: keyof FormState, value: string) => {
+  const updateField = (field: keyof ContactFormState, value: string) => {
     setFormState((current) => ({ ...current, [field]: value }));
     if (status !== 'idle') {
       setStatus('idle');
     }
+    if (errorMessage) {
+      setErrorMessage('');
+    }
   };
 
-  const submitForm = (event: FormEvent<HTMLFormElement>) => {
+  const submitForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!isValid(formState)) {
       setStatus('invalid');
       return;
     }
 
-    setStatus('ready');
-    window.location.href = createMailtoLink(formState);
+    setStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      await submitContactForm(formState);
+      setFormState(initialState);
+      setStatus('success');
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'אירעה שגיאה בשליחת הפנייה.');
+    }
   };
 
   return {
     formState,
     status,
+    errorMessage,
     updateField,
     submitForm,
   } satisfies ContactFormController;
 }
+

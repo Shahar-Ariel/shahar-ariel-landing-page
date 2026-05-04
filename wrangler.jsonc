@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "shahar-ariel",
+  "compatibility_date": "2026-05-04",
+  "pages_build_output_dir": "./dist",
+  "d1_databases": [
+    {
+      "binding": "CONTACT_DB",
+      "database_name": "shahar-ariel-contact",
+      "database_id": "d765e91f-fd30-4900-a7f9-b273d5fb113e"
+    }
+  ]
+}
