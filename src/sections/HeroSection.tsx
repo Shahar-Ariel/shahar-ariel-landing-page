@@ -8,16 +8,14 @@ export function HeroSection() {
         <div className="hero-copy">
           <span className="hero-copy__eyebrow">Software Architecture | Cloud | Security</span>
           <h1>
-            פיתוח מערכות
+            ארכיטקטורה ופיתוח
             <br />
-            Modernization, Cloud
-            <br />ו-Secure Backend בקצה העליון
           </h1>
           <p>
-            שחר אריאל הוא Software Architect עם מעל 12 שנות ניסיון בתכנון מערכות,
+            שחר אריאל הוא Software Architect עם מעל 13 שנות ניסיון בתכנון מערכות,
             modernization של מערכות Legacy, ארכיטקטורות Microservices, Cloud, Embedded
             systems וגם שילוב יכולות AI, עבודה עם OpenAI ו-Gemini ואימון מודלים לפי
-            צורך.
+            צורך, מליווי ארכיטקטוני ועד ביצוע hands-on.
           </p>
           <div className="hero-copy__actions">
             <a className="button button--primary" href="#contact">
