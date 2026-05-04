@@ -21,7 +21,7 @@ function getStatusText(status: ContactSubmitStatus, errorMessage: string) {
     return errorMessage;
   }
 
-  return 'הפרטים נשלחים לשרת ונשמרים ישירות במערכת.';
+  return '';
 }
 
 export function ContactSection() {
